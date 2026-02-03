@@ -143,6 +143,9 @@ class NebulaAudioHandler extends BaseAudioHandler {
   Future<void> skipToQueueItem(int index) =>
       _player.seek(Duration.zero, index: index);
 
+  Future<void> setVolume(double volume) => _player.setVolume(volume);
+  Stream<double> get volumeStream => _player.volumeStream;
+
   Future<void> shuffleStringQueue() async {
     final currentIndex = _player.currentIndex;
     if (currentIndex == null) return;

@@ -53,6 +53,9 @@ class PlayerRepositoryImpl implements PlayerRepository {
       .distinct();
 
   @override
+  Stream<double> get volumeStream => _audioHandler.volumeStream;
+
+  @override
   Future<String?> play(Track track) async {
     try {
       final source = await _createAudioSource(track);
@@ -180,6 +183,9 @@ class PlayerRepositoryImpl implements PlayerRepository {
 
   @override
   Future<void> seek(Duration position) => _audioHandler.seek(position);
+
+  @override
+  Future<void> setVolume(double volume) => _audioHandler.setVolume(volume);
 
   @override
   Future<List<Track>> search(String query) async {

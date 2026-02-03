@@ -1,9 +1,11 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:nebula/features/player/presentation/logic/player_controller.dart';
 import 'package:nebula/core/theme/app_theme.dart';
 import 'package:nebula/shared/widgets/widgets.dart';
+import 'package:nebula/features/player/presentation/widgets/volume_slider.dart';
 import 'package:nebula/features/favorites/presentation/logic/favorites_controller.dart';
 import 'package:nebula/features/downloads/presentation/logic/download_controller.dart';
 import 'package:nebula/features/playlist/presentation/logic/playlist_controller.dart';
@@ -370,8 +372,12 @@ class _FullPlayerScreenState extends State<FullPlayerScreen> {
                           context.read<PlayerController>().skipToNext(),
                     ),
 
-                    // Balance Spacer
-                    const SizedBox(width: 48),
+                    // Volume Control (Desktop)
+                    // We replace the 48 spacer with the volume slider
+                    if (Platform.isWindows || Platform.isLinux)
+                      const VolumeSlider()
+                    else
+                      const SizedBox(width: 48), // Original spacer for Mobile
                   ],
                 ),
 

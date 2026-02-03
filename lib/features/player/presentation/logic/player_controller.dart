@@ -17,6 +17,7 @@ class PlayerController extends ChangeNotifier {
   Track? _currentTrack;
   Duration _duration = Duration.zero;
   Duration _position = Duration.zero;
+  double _volume = 1.0; // Default max volume
 
   List<Track> _searchResults = [];
   bool _isSearching = false;
@@ -33,6 +34,7 @@ class PlayerController extends ChangeNotifier {
   String? get currentThumbnail => _currentTrack?.thumbnailUrl;
   Duration get duration => _duration;
   Duration get position => _position;
+  double get volume => _volume;
   List<Track> get searchResults => _searchResults;
   bool get isSearching => _isSearching;
   bool get isBuffering => _isBuffering;
@@ -124,6 +126,13 @@ class PlayerController extends ChangeNotifier {
         notifyListeners();
       }),
     );
+
+    _subscriptions.add(
+      _repository.queueStream.listen((q) {
+        _queue = q;
+        notifyListeners();
+      }),
+    );
   }
 
   // Actions forwarded to Repository
@@ -178,6 +187,13 @@ class PlayerController extends ChangeNotifier {
 
   Future<void> seek(Duration position) async {
     await _repository.seek(position);
+  }
+
+  Future<void> setVolume(double volume) async {
+    // Optimistic update to avoid native stream crash risks
+    _volume = volume;
+    notifyListeners();
+    await _repository.setVolume(volume);
   }
 
   Future<void> search(String query) async {
