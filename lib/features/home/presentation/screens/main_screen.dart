@@ -9,6 +9,8 @@ import 'package:provider/provider.dart';
 import 'package:nebula/features/auth/data/auth_service.dart';
 import 'package:nebula/core/services/update_service.dart';
 
+import '../../../auth/presentation/screens/login_screen.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -147,6 +149,7 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                   onTap: () async {
                     Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=> const LoginScreen(),),);
                     await auth.signOut();
                     // Navigation to login is handled by AuthService stream in Main/Router
                     // But if MainScreen is top level, we might need to rely on stream listener in main.dart
@@ -160,7 +163,7 @@ class _MainScreenState extends State<MainScreen> {
       ),
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
-          labelTextStyle: MaterialStateProperty.all(
+          labelTextStyle: WidgetStateProperty.all(
             const TextStyle(
               fontFamily: 'Courier New',
               fontWeight: FontWeight.bold,

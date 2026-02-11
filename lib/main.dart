@@ -189,11 +189,13 @@ class MainApp extends StatelessWidget {
   }
 }
 
+/// 认证路由包装器，用于根据用户的认证状态决定显示哪个页面
 class AuthWrapper extends StatelessWidget {
   const AuthWrapper({super.key});
 
   @override
   Widget build(BuildContext context) {
+    /// 获取认证服务。listen: false表示（1）仅获取服务实例，不监听变化；（2）避免AuthWrapper在认证状态变化时重建；（3）性能优化：只读取一次，不订阅更新
     final authService = Provider.of<AuthService>(context, listen: false);
 
     return StreamBuilder<AuthState>(

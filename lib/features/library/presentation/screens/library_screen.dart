@@ -99,7 +99,7 @@ class LibraryScreen extends StatelessWidget {
                           },
                         ),
                       );
-                    }).toList(),
+                    }),
 
                     if (playlistCtrl.playlists.isEmpty)
                       Center(

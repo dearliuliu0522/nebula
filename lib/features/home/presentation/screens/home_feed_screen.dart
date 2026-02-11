@@ -72,7 +72,7 @@ class HomeFeedScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     SizedBox(
-                      height: 140,
+                      height: 150,
                       child: ListView.separated(
                         scrollDirection: Axis.horizontal,
                         itemCount: player.playbackHistory.length,

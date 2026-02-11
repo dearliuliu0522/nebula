@@ -344,7 +344,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                     trailing: Switch(
                       value: favoritesCtrl.isFavorite(track.id),
-                      activeColor: AppTheme.nebulaPurple,
+                      activeThumbColor: AppTheme.nebulaPurple,
                       onChanged: (_) {
                         favoritesCtrl.toggleFavorite(track);
                         setState(() {}); // Refresh UI
@@ -368,10 +368,11 @@ class _SearchScreenState extends State<SearchScreen> {
                         track.id,
                       ),
                       builder: (context, snapshot) {
-                        if (!snapshot.hasData)
+                        if (!snapshot.hasData) {
                           return const Center(
                             child: CircularProgressIndicator(),
                           );
+                        }
                         final containingIds = snapshot.data!;
 
                         return ListView(

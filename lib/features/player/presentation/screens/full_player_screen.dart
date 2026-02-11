@@ -249,8 +249,9 @@ class _FullPlayerScreenState extends State<FullPlayerScreen> {
                         final track = context
                             .read<PlayerController>()
                             .currentTrack;
-                        if (track == null)
+                        if (track == null) {
                           return const SizedBox(width: 48); // Placeholder
+                        }
 
                         final isDownloaded = downloader.isDownloaded(track.id);
                         final isDownloading = downloader.isDownloading(
@@ -630,7 +631,7 @@ class _FullPlayerScreenState extends State<FullPlayerScreen> {
                       builder: (context, favs, _) {
                         return Switch(
                           value: favs.isFavorite(track.id),
-                          activeColor: AppTheme.nebulaPurple,
+                          activeThumbColor: AppTheme.nebulaPurple,
                           onChanged: (_) {
                             favs.toggleFavorite(track);
                           },

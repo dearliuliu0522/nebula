@@ -78,7 +78,7 @@ class SettingsController extends ChangeNotifier {
           notifyListeners();
 
           try {
-            await (_downloadRepository as DownloadRepository).moveDownloads(
+            await (_downloadRepository).moveDownloads(
               selectedDirectory,
             );
           } catch (e) {

@@ -76,7 +76,7 @@ class SettingsScreen extends StatelessWidget {
                             trailing: Switch(
                               value: settings.isDarkMode,
                               onChanged: (_) => settings.toggleTheme(),
-                              activeColor: AppTheme.nebulaPurple,
+                              activeThumbColor: AppTheme.nebulaPurple,
                               inactiveTrackColor: Colors.white10,
                             ),
                           ),
@@ -122,7 +122,7 @@ class SettingsScreen extends StatelessWidget {
                             trailing: Switch(
                               value: settings.highQuality,
                               onChanged: (_) => settings.toggleHighQuality(),
-                              activeColor: AppTheme.nebulaPurple,
+                              activeThumbColor: AppTheme.nebulaPurple,
                               inactiveTrackColor: Colors.white10,
                             ),
                           ),
@@ -132,7 +132,7 @@ class SettingsScreen extends StatelessWidget {
                             trailing: Switch(
                               value: settings.gapless,
                               onChanged: (_) => settings.toggleGapless(),
-                              activeColor: AppTheme.nebulaPurple,
+                              activeThumbColor: AppTheme.nebulaPurple,
                               inactiveTrackColor: Colors.white10,
                             ),
                           ),
